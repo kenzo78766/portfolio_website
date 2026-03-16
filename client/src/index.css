@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-500: #f43f5e;
+  --color-primary-600: #e11d48;
+  --color-dark-400: #2d2438;
+  --color-dark-500: #1a1625;
+  --color-dark-600: #130f1c;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-dark-600 text-gray-100 font-sans antialiased overflow-x-hidden;
+  }
+  
+  /* Standard system cursor used, overriding previous hides */
+  @media (pointer: fine) {
+    * {
+      cursor: auto;
+    }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-500;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full hover:bg-gray-500 transition-colors;
+}
+
+/* Glass effect utilities */
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+}
+
+.glass-card {
+  @apply bg-dark-500/50 backdrop-blur-lg border border-white/5 rounded-2xl shadow-2xl;
+}
+
+/* Gradient text */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400;
+}
+
+/* Faded background text utility */
+.faded-bg-text {
+  @apply absolute hidden md:block select-none opacity-[0.02] text-white font-extrabold uppercase;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+/* Elite UI Features */
+.neon-text {
+  text-shadow: 
+    0 0 5px rgba(244, 63, 94, 0.4),
+    0 0 10px rgba(244, 63, 94, 0.4),
+    0 0 20px rgba(244, 63, 94, 0.3),
+    0 0 40px rgba(244, 63, 94, 0.2);
+}
+
+.neon-text-teal {
+  text-shadow: 
+    0 0 5px rgba(94, 234, 212, 0.4),
+    0 0 10px rgba(94, 234, 212, 0.4),
+    0 0 20px rgba(94, 234, 212, 0.3),
+    0 0 40px rgba(94, 234, 212, 0.2);
+}
+
+.glass-card-premium {
+  @apply bg-[#0a0a0a]/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card-premium:hover {
+  @apply border-blue-500/40 shadow-[0_0_30px_rgba(59,130,246,0.2)];
+  transform: translateY(-5px);
+}
+
+/* Glow effects */
+.glow-effect {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Premium Flowing Gradient Text */
+.animated-gradient-text {
+  background: linear-gradient(-45deg, #fb7185, #e879f9, #fbbf24, #fb7185);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientFlow 4s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

@@ -2,7 +2,7 @@
 
 > A premium, animated developer portfolio built with React, Three.js, and a **Lofi Tokyo Twilight** aesthetic.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-rose?style=for-the-badge)](https://github.com/kenzo78766/Portfolio_Website)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-rose?style=for-the-badge)](https://portfolio-website-wine-five-22.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-kenzo78766-161b22?style=for-the-badge&logo=github)](https://github.com/kenzo78766)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Anshuman_Singh-0a66c2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/anshuman78766/)
 

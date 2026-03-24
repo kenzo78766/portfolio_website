@@ -28,6 +28,84 @@ const Projects = () => {
         'Developed a reactive dashboard using React 18 and Vite.',
         'Integrated API endpoints via Flask & SQLAlchemy ORM for efficient state synchronization.'
       ]
+    },
+    {
+      title: 'Rebel Foods – Frontend Clone',
+      duration: '2024',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      description: 'A responsive frontend clone of the Rebel Foods website focusing on layout, typography, and user interaction patterns.',
+      linkLive: 'https://rebelfood-clone-website.onrender.com/',
+      linkGithub: 'https://github.com/kenzo78766/RebelFood_Clone_Website',
+      features: [
+        'Recreated key landing pages with pixel-approximate UI.',
+        'Implemented responsive design for mobile and desktop.',
+        'Added smooth hover and scroll-based interactions for better UX.'
+      ]
+    },
+    {
+      title: 'To‑Do Web App',
+      duration: '2024',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      description: 'A simple and intuitive to‑do application that lets users add, mark, and remove daily tasks directly in the browser.',
+      linkLive: 'https://kenzo78766.github.io/SCT_WD_4/',
+      linkGithub: 'https://github.com/kenzo78766/SCT_WD_4',
+      features: [
+        'Supports add, complete, and delete task operations.',
+        'Clean, responsive layout suitable for mobile devices.',
+        'Uses browser storage-friendly structure ready for extension.'
+      ]
+    },
+    {
+      title: 'Tic‑Tac‑Toe Game Application',
+      duration: '2024',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      description: 'An interactive browser-based Tic‑Tac‑Toe game with win detection and a user-friendly interface.',
+      linkLive: 'https://kenzo78766.github.io/SCT_WD_3/',
+      linkGithub: 'https://github.com/kenzo78766/SCT_WD_3',
+      features: [
+        'Implements full game logic including win and draw detection.',
+        'Highlights winning combinations for better user feedback.',
+        'Includes reset functionality to quickly start new games.'
+      ]
+    },
+    {
+      title: 'Interactive Stopwatch Application',
+      duration: '2024',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      description: 'A web-based stopwatch with start, pause, and reset controls for accurate time tracking.',
+      linkLive: 'https://kenzo78766.github.io/SCT_WD_2/',
+      linkGithub: 'https://github.com/kenzo78766/SCT_WD_2',
+      features: [
+        'Provides precise time tracking with millisecond display.',
+        'Includes intuitive start, pause, and reset actions.',
+        'Built with a clean, minimal UI for focus on functionality.'
+      ]
+    },
+    {
+      title: 'Interactive Navigation Menu',
+      duration: '2024',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      description: 'A visually appealing navigation menu component with smooth animations and responsive behavior.',
+      linkLive: 'https://kenzo78766.github.io/SCT_WD_1/',
+      linkGithub: 'https://github.com/kenzo78766/SCT_WD_1',
+      features: [
+        'Built animated hover effects and active link styles.',
+        'Designed to be responsive across screen sizes.',
+        'Can be reused and adapted across multiple web projects.'
+      ]
+    },
+    {
+      title: 'Library Management System – DSA Project',
+      duration: '2025',
+      tech: ['C++', 'STL', 'Data Structures & Algorithms'],
+      description: 'A console-based library management system implemented in C++ using STL to handle core operations efficiently.',
+      linkLive: '',
+      linkGithub: 'https://github.com/kenzo78766/Library-System',
+      features: [
+        'Implemented core operations like issue, return, and search.',
+        'Used STL containers and algorithms for efficient data handling.',
+        'Designed modular code structure for ease of extension.'
+      ]
     }
   ];
 

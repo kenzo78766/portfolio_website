@@ -7,26 +7,44 @@ const CoCurricular = () => {
       title: 'Data Structures & Algorithms Training',
       organization: 'LPU Skill Development',
       date: 'Jul 2025',
-      icon: <Award className="text-emerald-400" size={32} />
+      icon: <Award className="text-emerald-400" size={32} />,
+      certificateUrl: 'https://drive.google.com/file/d/1hWAnQsObNvduzeEGSunk2ZrlygIl4qLk/view?usp=sharing'
+    },
+    {
+      title: 'Data Structures and Algorithms',
+      organization: 'Board Affinity',
+      date: 'Completed',
+      icon: <Award className="text-emerald-400" size={32} />,
+      certificateUrl: 'https://drive.google.com/file/d/1Uh8M3Z_qbqHFYROx35FF2N7dFyqiZO5z/view?usp=sharing'
     },
     {
       title: 'Full Stack Web Development Training',
       organization: 'Apna College',
       date: 'Jan 2025',
-      icon: <Award className="text-emerald-400" size={32} />
+      icon: <Award className="text-emerald-400" size={32} />,
+      certificateUrl: 'https://drive.google.com/file/d/17qUPlIZZXJMb4T2ilstFFIZ8-1mRfjG0/view?usp=sharing'
     },
     {
       title: 'Ethical Hacking Training',
       organization: 'Rising Tech Pro',
       date: 'Mar 2024',
-      icon: <ShieldCheck className="text-blue-400" size={32} />
+      icon: <ShieldCheck className="text-blue-400" size={32} />,
+      certificateUrl: 'https://drive.google.com/file/d/1SHCMi_tpYiZjvH3d6IUPBgTAANJvMThW/view?usp=sharing'
+    },
+    {
+      title: 'Privacy and Security in Social Media',
+      organization: 'NPTEL',
+      date: 'Completed',
+      icon: <Award className="text-emerald-400" size={32} />,
+      certificateUrl: 'https://drive.google.com/file/d/14xBhgzxdk688dzr2zrQrFhpbpfkMorT8/view?usp=sharing'
     },
     {
       title: 'Community Development Project',
       organization: 'Vivekanand Yuva Kalyan Kendra',
       date: 'Jul 2024 - Aug 2024',
       description: 'Led a month-long community project supporting underprivileged children and driving local cleanliness and tree-planting activities.',
-      icon: <Users className="text-purple-400" size={32} />
+      icon: <Users className="text-purple-400" size={32} />,
+      certificateUrl: 'https://drive.google.com/file/d/1wDslf1l9STaUhWwYrXcraeHn0AqwJV4x/view?usp=sharing'
     }
   ];
 
@@ -65,6 +83,16 @@ const CoCurricular = () => {
                   <p className="text-gray-400 text-sm font-light mt-2 leading-relaxed">
                     {item.description}
                   </p>
+                )}
+                {item.certificateUrl && (
+                  <a
+                    href={item.certificateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-2 mt-4 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-transform"
+                  >
+                    View Certificate
+                  </a>
                 )}
               </div>
             </motion.div>

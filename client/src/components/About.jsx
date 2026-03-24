@@ -68,16 +68,20 @@ const About = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             style={{ transformPerspective: 1000 }}
-            className="space-y-6 text-gray-300 leading-relaxed text-lg font-light"
+            className="space-y-6 text-gray-300 leading-relaxed text-lg font-light glass-card-premium p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-blue-500/10 via-emerald-500/5 to-fuchsia-500/10 shadow-[0_0_35px_rgba(59,130,246,0.25)]"
           >
             <motion.p variants={itemVariants}>
-              I am an enthusiastic and dedicated Software Engineer specializing in the MERN stack. My passion lies in crafting robust backend systems and intuitive, modern frontend interfaces. 
+              I am an enthusiastic and dedicated{' '}
+              <span className="text-emerald-300 font-semibold">Cloud Computing student</span>{' '}
+              and software developer. I enjoy building scalable systems and intuitive, modern interfaces using the{' '}
+              <span className="text-teal-300 font-semibold">MERN stack</span>{' '}
+              and cloud-native tools.
             </motion.p>
             <motion.p variants={itemVariants}>
-              During my academic career and internships, I have consistently demonstrated a strong ability to solve complex problems, learn cutting-edge tools quickly, and work cohesively within teams setting up platforms scaling with ease.
+              During my academic journey and projects, I&apos;ve developed a strong habit of breaking down complex problems, picking up new technologies quickly, and collaborating with teams to ship things that actually work in the real world.
             </motion.p>
             <motion.p variants={itemVariants}>
-              My goal is to continue growing as a Full-Stack Engineer, applying my knowledge of DSA and web technologies to bring impactful digital products to life.
+              My goal is to keep growing as a cloud-focused engineer, applying my knowledge of DSA, web technologies, and cloud platforms to bring impactful digital products to life.
             </motion.p>
 
             <motion.div variants={itemVariants} className="grid grid-cols-2 gap-4 mt-8">

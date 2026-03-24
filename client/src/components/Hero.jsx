@@ -174,7 +174,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 mb-12"
           >
-            Full-Stack Web & App Developer specializing in the MERN stack, building scalable and dynamic user experiences.
+            Cloud computing student building scalable systems and modern web apps with the MERN stack.
           </motion.p>
 
           <motion.div

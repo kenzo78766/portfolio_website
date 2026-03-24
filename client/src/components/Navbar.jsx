@@ -37,7 +37,7 @@ const Navbar = () => {
           </motion.div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-6">
             {navLinks.map((link, index) => (
               <motion.a
                 key={link.name}
@@ -45,9 +45,13 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="text-gray-300 hover:text-white transition-colors text-sm font-medium tracking-wide"
+                whileHover={{ scale: 1.15, y: -2, transition: { duration: 0.05 } }}
+                className="group relative text-gray-300 hover:text-white transition-colors text-sm font-medium tracking-wide px-1"
               >
-                {link.name}
+                <span className="relative z-10">{link.name}</span>
+                <span
+                  className="pointer-events-none absolute left-0 right-0 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-blue-500 via-emerald-400 to-fuchsia-500 opacity-0 scale-x-50 group-hover:scale-x-100 group-hover:opacity-100 transition-all duration-300 origin-center shadow-[0_0_12px_rgba(59,130,246,0.8)]"
+                />
               </motion.a>
             ))}
           </nav>

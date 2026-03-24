@@ -130,22 +130,22 @@ const CustomCursor = () => {
       />
 
       <AnimatePresence>
-        {isIdle && mousePos.x >= 0 && mousePos.y >= 0 && (
+        {isIdle && (
           <motion.div
             key={idleIndex}
-            initial={{ opacity: 0, scale: 0.9, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25 }}
-            className="fixed z-[110] pointer-events-none"
-            style={{
-              top: mousePos.y + 24,
-              left: mousePos.x + 24,
-            }}
+            className="fixed bottom-6 right-6 z-[110] pointer-events-none"
           >
-            <div className="px-3 py-2 rounded-2xl bg-black/80 border border-amber-400/50 shadow-[0_0_20px_rgba(251,191,36,0.45)] text-[11px] font-mono text-amber-200 flex items-center gap-2">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-              <span>{idleMessages[idleIndex]}</span>
+            <div className="rounded-2xl overflow-hidden border border-amber-400/60 shadow-[0_0_25px_rgba(251,191,36,0.6)] bg-black/80">
+              <img
+                src="https://media.tenor.com/aQCFivS89qAAAAAi/dance.gif"
+                alt="Wake up!"
+                className="w-28 h-28 object-cover"
+                loading="lazy"
+              />
             </div>
           </motion.div>
         )}

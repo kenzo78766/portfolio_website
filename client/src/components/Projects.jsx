@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 
@@ -109,6 +110,24 @@ const Projects = () => {
     }
   ];
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showAll, setShowAll] = useState(false);
+
+  const normalizedSearch = searchTerm.toLowerCase().trim();
+
+  const filteredProjects = projects.filter((project) => {
+    if (!normalizedSearch) return true;
+    const inTitle = project.title.toLowerCase().includes(normalizedSearch);
+    const inTech = project.tech.some((t) => t.toLowerCase().includes(normalizedSearch));
+    return inTitle || inTech;
+  });
+
+  const visibleProjects = normalizedSearch
+    ? filteredProjects
+    : showAll
+      ? filteredProjects
+      : filteredProjects.slice(0, 2);
+
   return (
     <section id="projects" className="py-32 bg-dark-600 relative z-10 overflow-hidden">
       {/* Huge Faded Background Text */}
@@ -130,8 +149,41 @@ const Projects = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-400 mx-auto rounded-full" />
         </motion.div>
 
+        <div className="max-w-3xl mx-auto mb-10">
+          <div className="glass-card-premium rounded-2xl border border-white/10 bg-gradient-to-r from-blue-500/10 via-slate-900/60 to-emerald-500/10 px-5 py-4 shadow-[0_0_30px_rgba(59,130,246,0.25)]">
+            <div className="mb-4">
+              <div className="w-11/12 mx-auto h-7 rounded-full overflow-hidden border border-white/15 shadow-[0_0_22px_rgba(59,130,246,0.7)] bg-black/50">
+                <video
+                  src="/projects.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover scale-110"
+                />
+              </div>
+            </div>
+
+            <div className="relative">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="e.g. React, MongoDB, C++"
+                className="w-full rounded-full bg-black/40 border border-white/10 px-5 py-2.5 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-400/70 focus:border-emerald-400/70"
+              />
+            </div>
+
+            {normalizedSearch && (
+              <p className="mt-2 text-xs text-gray-400 text-center">
+                Showing results for <span className="text-emerald-300 font-medium">“{searchTerm}”</span>
+              </p>
+            )}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {projects.map((project, idx) => (
+          {visibleProjects.map((project, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 50, rotateX: 20 }}
@@ -179,6 +231,24 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
+
+        {filteredProjects.length === 0 && (
+          <p className="mt-8 text-center text-gray-400 text-sm">
+            No projects match your search. Try a different name or tech.
+          </p>
+        )}
+
+        {filteredProjects.length > 2 && !normalizedSearch && (
+          <div className="mt-10 text-center">
+            <button
+              type="button"
+              onClick={() => setShowAll((prev) => !prev)}
+              className="inline-flex items-center px-6 py-2 rounded-full border border-emerald-400/60 text-emerald-300 text-sm font-medium bg-emerald-500/5 hover:bg-emerald-500/15 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all"
+            >
+              {showAll ? 'Show fewer projects' : 'Show more projects'}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

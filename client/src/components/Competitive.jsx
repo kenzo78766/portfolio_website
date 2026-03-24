@@ -10,7 +10,7 @@ const Competitive = () => {
       name: 'LeetCode',
       icon: <SiLeetcode className="text-[#FFA116] w-12 h-12" />,
       stats: {
-        rating: '1850',
+        rating: 'NA',
         solvedFallback: '150+',
       },
       profileUrl: 'https://leetcode.com/u/kenzo_lk6/',

@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react';
 import axios from 'axios';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState({ loading: false, success: false, error: '' });
+  const formRef = useRef(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -33,6 +34,19 @@ const Contact = () => {
     }
   };
 
+  const scrollToForm = () => {
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Small timeout to allow scroll, then focus message field if present
+      setTimeout(() => {
+        const messageEl = document.getElementById('message');
+        if (messageEl) {
+          messageEl.focus();
+        }
+      }, 600);
+    }
+  };
+
   return (
     <section id="contact" className="py-32 relative overflow-hidden bg-dark-600 pb-40 z-10">
       {/* Huge Faded Background Text */}
@@ -55,6 +69,58 @@ const Contact = () => {
           <p className="text-gray-400 max-w-2xl mx-auto text-lg font-light">
             I'm always open to discussing web development, new projects, creative ideas, or opportunities to be part of your vision.
           </p>
+        </motion.div>
+
+        {/* Connect With Me cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
+          <h3 className="text-lg font-semibold text-white text-center mb-6 tracking-wide uppercase">
+            Connect With Me
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <a
+              href="https://www.linkedin.com/in/anshuman78766/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-card-premium p-5 flex flex-col items-center text-center hover:-translate-y-1 transition-transform group"
+            >
+              <div className="mb-3 p-3 rounded-full bg-blue-500/10 text-blue-400 group-hover:scale-110 transition-transform">
+                <Linkedin size={24} />
+              </div>
+              <p className="text-sm text-gray-400 uppercase tracking-wide mb-1">LinkedIn</p>
+              <p className="text-white text-sm font-medium">Let's connect professionally</p>
+            </a>
+
+            <a
+              href="https://github.com/kenzo78766"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-card-premium p-5 flex flex-col items-center text-center hover:-translate-y-1 transition-transform group"
+            >
+              <div className="mb-3 p-3 rounded-full bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
+                <Github size={24} />
+              </div>
+              <p className="text-sm text-gray-400 uppercase tracking-wide mb-1">GitHub</p>
+              <p className="text-white text-sm font-medium">Explore my code & projects</p>
+            </a>
+
+            <button
+              type="button"
+              onClick={scrollToForm}
+              className="glass-card-premium p-5 flex flex-col items-center text-center hover:-translate-y-1 transition-transform group"
+            >
+              <div className="mb-3 p-3 rounded-full bg-rose-500/10 text-rose-400 group-hover:scale-110 transition-transform">
+                <Mail size={24} />
+              </div>
+              <p className="text-sm text-gray-400 uppercase tracking-wide mb-1">Email</p>
+              <p className="text-white text-sm font-medium">Send me a message</p>
+            </button>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -99,15 +165,6 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="pt-8 flex flex-col items-start gap-4">
-                <p className="text-gray-400">Download my detailed resume for more information about my background.</p>
-                <a
-                  href="#"
-                  className="px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-emerald-500 hover:from-blue-500 hover:to-emerald-400 text-white font-bold transition-all duration-300 shadow-lg shadow-blue-500/25 flex items-center justify-center space-x-2 hover:-translate-y-1 w-full sm:w-auto text-center"
-                >
-                  Download PDF Resume
-                </a>
-              </div>
             </div>
           </motion.div>
 
@@ -118,7 +175,11 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="glass-card-premium p-8 space-y-6 relative overflow-hidden">
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="glass-card-premium p-8 space-y-6 relative overflow-hidden"
+            >
                {/* Background Glow */}
                <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/5 to-emerald-500/5 opacity-100 blur-2xl pointer-events-none" />
               {status.success && (

@@ -1,10 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const idleMessages = [
+  "Don't sleep, stay awake 👀",
+  'Scroll a bit, conquer a bug.',
+  'DSA break? Or coffee break?',
+  'Pixels are waiting for your next move.',
+];
 
 const CustomCursor = () => {
   const canvasRef = useRef(null);
+  const idleTimeoutRef = useRef(null);
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isIdle, setIsIdle] = useState(false);
+  const [idleIndex, setIdleIndex] = useState(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -85,6 +95,14 @@ const CustomCursor = () => {
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
+      setIsIdle(false);
+      if (idleTimeoutRef.current) {
+        clearTimeout(idleTimeoutRef.current);
+      }
+      idleTimeoutRef.current = setTimeout(() => {
+        setIdleIndex((prev) => (prev + 1) % idleMessages.length);
+        setIsIdle(true);
+      }, 5000);
     };
 
     const handleMouseOver = (e) => {
@@ -98,6 +116,9 @@ const CustomCursor = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
+      if (idleTimeoutRef.current) {
+        clearTimeout(idleTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -107,6 +128,28 @@ const CustomCursor = () => {
         ref={canvasRef}
         className="fixed top-0 left-0 w-full h-full pointer-events-none z-[100] mix-blend-screen opacity-70"
       />
+
+      <AnimatePresence>
+        {isIdle && mousePos.x >= 0 && mousePos.y >= 0 && (
+          <motion.div
+            key={idleIndex}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ duration: 0.25 }}
+            className="fixed z-[110] pointer-events-none"
+            style={{
+              top: mousePos.y + 24,
+              left: mousePos.x + 24,
+            }}
+          >
+            <div className="px-3 py-2 rounded-2xl bg-black/80 border border-amber-400/50 shadow-[0_0_20px_rgba(251,191,36,0.45)] text-[11px] font-mono text-amber-200 flex items-center gap-2">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span>{idleMessages[idleIndex]}</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

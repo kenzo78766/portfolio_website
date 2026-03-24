@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const contactRoute = require('./routes/contact');
+const competitiveRoute = require('./routes/competitive');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,6 +23,7 @@ mongoose.connect(MONGO_URI)
 
 // Routes
 app.use('/api/contact', contactRoute);
+app.use('/api/competitive', competitiveRoute);
 
 app.get('/', (req, res) => {
   res.send('Portfolio API is running...');

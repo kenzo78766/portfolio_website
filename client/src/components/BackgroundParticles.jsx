@@ -18,20 +18,22 @@ const BackgroundParticles = () => {
     window.addEventListener('resize', setSize);
 
     class Particle {
-      constructor(x, y, dx, dy, size) {
+      constructor(x, y, dx, dy, size, color, glowColor) {
         this.x = x;
         this.y = y;
         this.dx = dx;
         this.dy = dy;
         this.size = size;
+        this.color = color;
+        this.glowColor = glowColor;
       }
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = 'rgba(251, 191, 36, 0.6)'; // Amber ember
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = this.glowColor;
         ctx.fill();
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgba(251, 191, 36, 0.8)';
       }
       update() {
         if (this.x > canvas.width || this.x < 0) this.dx = -this.dx;
@@ -45,14 +47,24 @@ const BackgroundParticles = () => {
 
     const init = () => {
       particlesArray = [];
-      const numberOfParticles = (canvas.height * canvas.width) / 12000;
+      // Slightly higher count but much smaller, softer particles
+      const numberOfParticles = (canvas.height * canvas.width) / 9000;
       for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 3) + 1;
-        let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
-        let y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
-        let dx = (Math.random() - 0.5) * 0.5;
-        let dy = (Math.random() * -0.5) - 0.2;
-        particlesArray.push(new Particle(x, y, dx, dy, size));
+        const size = Math.random() * 1.2 + 0.4; // 0.4 - 1.6px
+        const x = Math.random() * (canvas.width - size * 4) + size * 2;
+        const y = Math.random() * (canvas.height - size * 4) + size * 2;
+        const dx = (Math.random() - 0.5) * 0.15;
+        const dy = (Math.random() - 0.5) * 0.15;
+
+        // Warm color palette: soft ambers, oranges, and pinks
+        const hue = 30 + Math.random() * 40; // 30-70 (warm range)
+        const saturation = 80 + Math.random() * 10;
+        const lightness = 55 + Math.random() * 10;
+        const baseAlpha = 0.6;
+        const color = `hsla(${hue}, ${saturation}%, ${lightness}%, ${baseAlpha})`;
+        const glowColor = `hsla(${hue}, ${saturation}%, ${lightness + 10}%, 0.9)`;
+
+        particlesArray.push(new Particle(x, y, dx, dy, size, color, glowColor));
       }
     };
 
@@ -76,9 +88,8 @@ const BackgroundParticles = () => {
       }
     };
 
-    let animationFrameId;
     const animate = () => {
-      requestAnimationFrame(animate);
+      const animationFrameId = requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       for (let i = 0; i < particlesArray.length; i++) {
@@ -91,7 +102,6 @@ const BackgroundParticles = () => {
 
     return () => {
       window.removeEventListener('resize', setSize);
-      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

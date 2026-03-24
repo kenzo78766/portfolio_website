@@ -56,7 +56,7 @@ const CanvasLoader = () => {
 // 3D MODELS
 // ============================================================================
 
-const CyberpunkDiorama = () => {
+const CyberpunkDiorama = ({ isMobile }) => {
   const group = useRef();
   const { scene, animations } = useGLTF('/vaporwave_tokyo_sketchfab_3d_editor_challenge.glb');
   const { actions, names } = useAnimations(animations, group);
@@ -68,8 +68,12 @@ const CyberpunkDiorama = () => {
     }
   }, [actions, names]);
 
+  const position = isMobile ? [1.5, -0.3, 0] : [4, -0.2, 1];
+  const rotation = isMobile ? [0, 0.9, 0] : [0, 0.5, 0];
+  const scale = isMobile ? [0.6, 0.6, 0.6] : [0.5, 0.5, 0.5];
+
   return (
-    <group ref={group} position={[4, -0.2, 1]} rotation={[0, 0.5, 0]} scale={[0.5, 0.5, 0.5]}>
+    <group ref={group} position={position} rotation={rotation} scale={scale}>
       <primitive object={scene} />
     </group>
   );
@@ -84,24 +88,37 @@ const Hero = () => {
     'Robust Backend Systems'
   ]);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden z-10">
 
       {/* 3D Canvas Background layer */}
-      <div className="absolute inset-0 z-0 opacity-60 pointer-events-auto">
-        <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+      <div className="absolute inset-0 z-0 opacity-60 pointer-events-none md:pointer-events-auto">
+        <Canvas camera={{ position: isMobile ? [0, 0, 9.5] : [0, 0, 8], fov: isMobile ? 60 : 50 }}>
           <Suspense fallback={<CanvasLoader />}>
             <ambientLight intensity={1.5} />
             <directionalLight position={[10, 10, 5]} intensity={3} castShadow />
             <pointLight position={[-5, 5, -5]} intensity={2} color="#fb7185" />
 
-            <CyberpunkDiorama />
+            <CyberpunkDiorama isMobile={isMobile} />
 
-            <OrbitControls
-              enableZoom={false}
-              minPolarAngle={Math.PI / 2.5}
-              maxPolarAngle={Math.PI / 2}
-            />
+            {!isMobile && (
+              <OrbitControls
+                enableZoom={false}
+                minPolarAngle={Math.PI / 2.5}
+                maxPolarAngle={Math.PI / 2}
+              />
+            )}
           </Suspense>
         </Canvas>
       </div>

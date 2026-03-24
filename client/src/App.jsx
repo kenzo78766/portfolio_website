@@ -11,6 +11,9 @@ import Experience from './components/Experience';
 import CoCurricular from './components/CoCurricular';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import GithubStats from './components/GithubStats';
+import FunHints from './components/FunHints';
+import ProfileChatbot from './components/ProfileChatbot';
 
 function App() {
   return (
@@ -24,12 +27,15 @@ function App() {
           <About />
           <Skills />
           <Projects />
+          <GithubStats />
           <Competitive />
           <Experience />
           <CoCurricular />
           <Contact />
         </main>
         <Footer />
+        <FunHints />
+        <ProfileChatbot />
       </div>
     </Router>
   );

@@ -104,7 +104,10 @@ const Hero = () => {
 
       {/* 3D Canvas Background layer */}
       <div className="absolute inset-0 z-0 opacity-60 pointer-events-none md:pointer-events-auto">
-        <Canvas camera={{ position: isMobile ? [0, 0, 9.5] : [0, 0, 8], fov: isMobile ? 60 : 50 }}>
+        <Canvas
+          dpr={isMobile ? [1, 1.25] : [1, 1.75]}
+          camera={{ position: isMobile ? [0, 0, 11] : [0, 0, 8], fov: isMobile ? 60 : 50 }}
+        >
           <Suspense fallback={<CanvasLoader />}>
             <ambientLight intensity={1.5} />
             <directionalLight position={[10, 10, 5]} intensity={3} castShadow />

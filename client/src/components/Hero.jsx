@@ -2,37 +2,6 @@ import { motion } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Download, ArrowRight, Mail } from 'lucide-react';
 import { useRef, useState, useEffect, Suspense } from 'react';
-
-// Custom Typewriter Hook
-const useTypewriter = (words, typingSpeed = 70, deletingSpeed = 50, pauseTime = 1000) => {
-  const [text, setText] = useState('');
-  const [wordIndex, setWordIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentWord = words[wordIndex];
-
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        setText(currentWord.substring(0, text.length + 1));
-        if (text === currentWord) {
-          setTimeout(() => setIsDeleting(true), pauseTime);
-        }
-      } else {
-        setText(currentWord.substring(0, text.length - 1));
-        if (text === '') {
-          setIsDeleting(false);
-          setWordIndex((prev) => (prev + 1) % words.length);
-        }
-      }
-    }, isDeleting ? deletingSpeed : typingSpeed);
-
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseTime]);
-
-  return text;
-};
-
 import { useGLTF, useAnimations, OrbitControls, Html, useProgress } from '@react-three/drei';
 
 // ============================================================================
@@ -81,13 +50,6 @@ const CyberpunkDiorama = ({ isMobile }) => {
 
 
 const Hero = () => {
-  const typewriterText = useTypewriter([
-    'Scalable Web Apps',
-    'Modern MERN Stacks',
-    'Interactive UIs',
-    'Robust Backend Systems'
-  ]);
-
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -140,9 +102,14 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-amber-400 font-mono text-lg md:text-xl mb-4 tracking-widest uppercase">
-              Welcome to my portfolio
-            </h2>
+            <div className="mb-4 inline-block">
+              <div className="hero-wlb-wrapper text-amber-400 uppercase tracking-widest">
+                <div className="hero-wlb-variable">
+                  <span className="hero-wlb-work">WELCOME</span>
+                  &nbsp;TO MY PORTFOLIO
+                </div>
+              </div>
+            </div>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-4 leading-tight">
               Hi, I'm <br />
               <span className="animated-gradient-text neon-text">
@@ -155,17 +122,31 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="text-xl md:text-3xl text-gray-300 mb-8 h-20"
+            className="text-xl md:text-3xl text-gray-300 mb-8 flex flex-col items-center md:items-start gap-3"
           >
-            I build{' '}
-            <span className="text-teal-300 font-semibold drop-shadow-[0_0_8px_rgba(94,234,212,0.8)]">
-              {typewriterText}
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ repeat: Infinity, duration: 0.8 }}
-                className="inline-block w-[2px] h-[1.2em] bg-teal-300 align-middle ml-[2px]"
-              />
-            </span>
+            <div>
+              <span className="font-semibold text-white">I build</span>
+            </div>
+            <div className="w-full max-w-xl">
+              <div className="hero-marquee">
+                <div className="hero-marquee-blur" aria-hidden="true">
+                  <p className="hero-marquee-text">
+                    Scalable web apps 
+                    • Modern MERN stacks 
+                    • Interactive UIs 
+                    • Robust backend systems
+                  </p>
+                </div>
+                <div className="hero-marquee-clear">
+                  <p className="hero-marquee-text">
+                    Scalable web apps 
+                    • Modern MERN stacks 
+                    • Interactive UIs 
+                    • Robust backend systems
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.p

@@ -77,7 +77,16 @@ const CoCurricular = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Certifications & Co-curricular</h2>
+          <div className="inline-block heading-with-ghost">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 city-nights-heading">Certifications & Co-curricular</h2>
+            <div className="heading-ghost">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-400 mx-auto rounded-full" />
         </motion.div>
 
@@ -96,7 +105,7 @@ const CoCurricular = () => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col gap-3">
               <div className="relative flex-1">
                 <input
                   type="text"
@@ -106,16 +115,6 @@ const CoCurricular = () => {
                   className="w-full rounded-full bg-black/40 border border-white/10 px-5 py-2.5 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-400/70 focus:border-emerald-400/70"
                 />
               </div>
-
-              {filteredItems.length > 2 && !normalizedSearch && (
-                <button
-                  type="button"
-                  onClick={() => setShowAll((prev) => !prev)}
-                  className="inline-flex items-center justify-center px-5 py-2.5 rounded-full border border-emerald-400/70 text-emerald-200 text-xs font-medium bg-emerald-500/10 hover:bg-emerald-500/20 hover:shadow-[0_0_18px_rgba(16,185,129,0.5)] transition-all whitespace-nowrap"
-                >
-                  {showAll ? 'Show fewer' : 'Show all'}
-                </button>
-              )}
             </div>
 
             {normalizedSearch && (
@@ -162,6 +161,18 @@ const CoCurricular = () => {
             </motion.div>
           ))}
         </div>
+
+        {filteredItems.length > 2 && !normalizedSearch && (
+          <div className="mt-8 text-center">
+            <button
+              type="button"
+              onClick={() => setShowAll((prev) => !prev)}
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full border border-emerald-400/70 text-emerald-200 text-sm font-medium bg-emerald-500/10 hover:bg-emerald-500/20 hover:shadow-[0_0_18px_rgba(16,185,129,0.5)] transition-all"
+            >
+              {showAll ? 'Show fewer certifications' : 'Show all certifications'}
+            </button>
+          </div>
+        )}
 
         {filteredItems.length === 0 && (
           <p className="mt-8 text-center text-gray-400 text-sm">

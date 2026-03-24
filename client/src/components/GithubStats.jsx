@@ -27,7 +27,16 @@ const GithubStats = () => {
               Live GitHub Overview
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-2 neon-text">GitHub Activity & Stats</h2>
+          <div className="inline-block heading-with-ghost">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-2 city-nights-heading">GitHub Activity & Stats</h2>
+            <div className="heading-ghost">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
           <p className="text-gray-400 max-w-2xl text-sm md:text-base">
             Auto-updating cards fetched directly from GitHub stats services, showing your contribution
             graph, overall statistics, and most used languages.

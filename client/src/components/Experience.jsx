@@ -48,7 +48,16 @@ const Experience = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 neon-text">Experience</h2>
+          <div className="inline-block heading-with-ghost">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 city-nights-heading">Experience</h2>
+            <div className="heading-ghost">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-400 mx-auto rounded-full" />
         </motion.div>
 

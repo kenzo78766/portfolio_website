@@ -79,6 +79,22 @@ const About = () => {
             style={{ transformPerspective: 1000 }}
             className="space-y-6 text-gray-300 leading-relaxed text-lg font-light glass-card-premium p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-blue-500/10 via-emerald-500/5 to-fuchsia-500/10 shadow-[0_0_35px_rgba(59,130,246,0.25)]"
           >
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col items-center mb-4"
+            >
+              <div className="pfp-glow-wrapper">
+                <div className="pfp-glow-ring" />
+                <div className="pfp-avatar">
+                  <img
+                    src="https://i.pinimg.com/736x/33/3b/cc/333bccced43be09c1872415ff4b79ade.jpg"
+                    alt="Anshuman Singh profile"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
             <motion.p variants={itemVariants}>
               I am an enthusiastic and dedicated{' '}
               <span className="text-emerald-300 font-semibold">Cloud Computing student</span>{' '}

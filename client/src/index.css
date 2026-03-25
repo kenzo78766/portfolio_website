@@ -370,3 +370,49 @@
     opacity: 0;
   }
 }
+
+/* Profile picture glowing border in About section */
+.pfp-glow-wrapper {
+  position: relative;
+  width: 7.5rem;
+  height: 7.5rem;
+}
+
+.pfp-glow-ring {
+  position: absolute;
+  inset: -0.3rem;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(59, 130, 246, 0) 0deg,
+    rgba(59, 130, 246, 0.95) 90deg,
+    rgba(59, 130, 246, 0) 140deg,
+    rgba(16, 185, 129, 0.95) 200deg,
+    rgba(16, 185, 129, 0) 260deg,
+    rgba(244, 63, 94, 0.95) 320deg,
+    rgba(244, 63, 94, 0) 360deg
+  );
+  filter: blur(10px);
+  opacity: 0.9;
+  animation: pfp-rotate 4s linear infinite;
+  pointer-events: none;
+}
+
+.pfp-avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 2px solid rgba(148, 163, 184, 0.7);
+  background: radial-gradient(circle at 30% 0%, #1e293b, #020617 60%);
+}
+
+@keyframes pfp-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
